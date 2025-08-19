@@ -4,8 +4,8 @@ import "./App.css";
 function App() {
     const [todo, setTodo] = useState([
 
-        { id: 0, text: "abc", completed: false },
-        { id: 1, text: "xyz", completed: false }
+        { id: 0, text: "abc", completed: false , date: "2025-08-19", time: "19:36" },
+        { id: 1, text: "xyz", completed: false , date: "2025-08-19", time: "19:36" },
 
     ]);
     
@@ -16,7 +16,7 @@ function App() {
 
     function newTOdo() {
 
-    if (input.trim() === "" && date.trim () === "" && time.trim() === "") {
+    if (input.trim() === "" && date.trim() === "" && time.trim() === "") {
       setError(true);
       return;
     }
@@ -72,18 +72,20 @@ function App() {
             type="text" 
             onChange={inputHandler} value={input} 
             onKeyDown={handleKeyDown} />
+
             <input
-           className="date-input"
+           className={error? "date error" : "date-input"}
            type="date"
            onChange={dateHandler}
            value={date} />
+           
             <input
-           className="time-input"
+           className={error? "time error" : "time-input"}
             type="time"
             onChange={timeHandler}
             value={time} />
             <button className="button" onClick={newTOdo}>Add task</button>
-            
+             
              </div>
              
             <ul>
@@ -91,15 +93,22 @@ function App() {
         {todo.map(item => (
           <li key={item.id}>
             <div className="message">
-              <input
+              <input className="checkbox "
               type="checkbox"
               checked={item.completed}
               onChange={() => toggleCompleted(item.id)}
             />
-            
-            {item.text}
+            <span className="item-text" >
+            {item.text} 
+            </span>
+            <span className="item-date">
+            {item.date}
+            </span>
+            <span className="item-time">
+            {item.time}
+            </span>
             <button className="delete-button" onClick={() => deleteTodo(item.id)}>
-          🗑️
+          Delete
         </button>
             </div>
             

@@ -78,28 +78,79 @@
 }
 
 .message {
-  margin-top: 20px;
-  text-align: left;
-  width: 100%;
-  padding: 20px 200px;
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content:space-between; 
+  padding: 0 20px; 
+  margin-top: 20px;
+  height: 80px;
+  width: 800px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  
 }
-.message input {
-  margin-right: 50px;
-  cursor: pointer;
-  size: 200px ;
-  display: inline-block;
-}
+
 .delete-button {
-  margin-left: 10px;
-  background-color: #ed0f0f;
+  background-color: #0f0e0e;
   border: none;
   color: white;
   padding: 5px 10px;
   cursor: pointer;
+  height: 40px;
+  width: 60px;
   border-radius: 4px;
+  margin-left: auto; 
 }
+.message .item{
+  margin-right: 50px;
+}
+.item-text {
+  display: inline-block;
+  margin-right: 100px;
+  font-size: 2rem;
+}
+.checkbox {
+  align-items: start;
+  margin: 0;
+  cursor: pointer;
+  width: 20px;
+  float: left;
+  height: 20px;
+  margin-right: 20px; 
+  
+  
+}
+
+.item-date {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 1.2rem;
+}
+.item-time {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 1.2rem;
+}
+.item-completed {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 1.2rem;
+  color: green;
+}
+
+
+
+.delete-button {
+  background-color: #0f0e0e;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  height: 40px;
+  width: 60px;
+  border-radius: 4px;
+  margin-left: auto; 
+}
+
+
