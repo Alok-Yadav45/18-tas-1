@@ -21,13 +21,18 @@ function App() {
         setInput(event.target.value)
        
     }
+    function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      newTOdo();
+    } 
+}
 
     return (
         <div>
             <h1>Add Todo</h1>
 
-            <input type="text" onChange={inputHandler} value={input}  />
-            <button onEnter={newTOdo}>ADD</button>
+            <input type="text" onChange={inputHandler} value={input} onKeyDown={handleKeyDown} />
+            <button onClick={newTOdo}>ADD</button>
             <ul>
         {todo.map(item => (
           <li key={item.id}>
@@ -40,4 +45,4 @@ function App() {
     );
 }
 
-export default App;
+export default App ;
