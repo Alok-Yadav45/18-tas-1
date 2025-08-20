@@ -1,9 +1,12 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.App{
+
+.App {
+  margin: 0;
+
   text-align: center;
   background-color: #f0eff3;
   min-height: 100vh;
@@ -13,10 +16,11 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: black;
-  
+
 
 }
-.input-container {
+
+/* .header {
   display: flex;
   flex-direction: row;
   background-color: rgb(101, 103, 239);
@@ -25,41 +29,66 @@
   align-items: center;
   margin-bottom: 20px;
   padding: 50px;
+} */
+.header {
+  background-color: #007bff;
+  padding: 15px 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 20vh;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
+
+.input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
 .h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   margin-top: 0px;
   margin-right: 100px;
 }
+
 .input {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 1px;
   margin-bottom: 10px;
-  
+
   width: 60%;
 }
+
 .date-input {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 1px;
- 
+
   width: 20%;
   margin-bottom: 10px;
 }
+
 .time-input {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 1px;
- 
+
   width: 10%;
   margin-bottom: 10px;
 }
+
 .button {
   padding: 14px 40px;
-  background-color: #007bff;
-  color: white;
+
   border: none;
   border-radius: 4px;
   margin-bottom: 9px;
@@ -68,89 +97,145 @@
   font-size: 12px;
   font-weight: bold;
   transition: background-color 0.3s ease;
+  background-color: white;
+  color: #007bff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+
 
 }
+
 .input.error {
   border-color: red;
 }
+
 .button:hover {
   background-color: #0056b3;
 }
 
-.message {
+/* .message {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content:space-between; 
   padding: 0 20px; 
   margin-top: 20px;
-  height: 80px;
-  width: 800px;
+  height:auto;
+  width: 100%;
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  
+} */
+
+.message {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  margin-top: 10px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 10px;
+  
+}
+
+
+.message-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .delete-button {
-  background-color: #0f0e0e;
+
   border: none;
-  color: white;
+  background-color: rgb(219, 50, 50);
   padding: 5px 10px;
   cursor: pointer;
   height: 40px;
   width: 60px;
   border-radius: 4px;
-  margin-left: auto; 
+  margin-left: auto;
 }
-.message .item{
+
+.message .item {
   margin-right: 50px;
 }
+
 .item-text {
   display: inline-block;
   margin-right: 100px;
-  font-size: 2rem;
+  font-size: 1.3rem;
+  flex: 1;
+  text-align: left;
 }
+
 .checkbox {
   align-items: start;
   margin: 0;
   cursor: pointer;
   width: 20px;
-  float: left;
+
   height: 20px;
-  margin-right: 20px; 
-  
-  
+  margin-right: 20px;
+
+
 }
 
-.item-date {
+
+.deadline-expired {
+  display: inline-block;
+  margin-right: auto;
+  margin-left: 20px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+/* .item-time {
   display: inline-block;
   margin-right: 20px;
-  font-size: 1.2rem;
-}
-.item-time {
-  display: inline-block;
-  margin-right: 20px;
-  font-size: 1.2rem;
-}
+  font-size: 0.8rem;
+} */
 .item-completed {
   display: inline-block;
   margin-right: 20px;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   color: green;
 }
 
 
-
-.delete-button {
-  background-color: #0f0e0e;
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  cursor: pointer;
-  height: 40px;
-  width: 60px;
-  border-radius: 4px;
-  margin-left: auto; 
+.item-text.completed {
+  text-decoration: line-through;
+  color: rgb(14, 14, 14);
 }
 
 
+
+.todo-item {
+  background-color: #f9f9f9;
+  margin: 8px auto;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px;
+}
+
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  max-width: 800px;
+  width: 100%;
+}

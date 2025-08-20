@@ -1,47 +1,51 @@
-import { useState  } from "react";
+import { useState } from "react";
 import "./App.css";
 
 function App() {
-    const [todo, setTodo] = useState([
+  const [todo, setTodo] = useState([
 
-        { id: 0, text: "abc", completed: false , date: "2025-08-19", time: "19:36" },
-        { id: 1, text: "xyz", completed: false , date: "2025-08-19", time: "19:36" },
+    { id: 0, text: "abc", completed: false, date: "2025-08-19", time: "19:36" },
+    { id: 1, text: "xyz", completed: false, date: "2025-08-19", time: "19:36" },
 
-    ]);
-    
-    const [input, setInput] = useState("");
-    const [error, setError] = useState(false);
-    const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
+  ]);
 
-    function newTOdo() {
+  const [input, setInput] = useState("");
+  const [error, setError] = useState(false);
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
 
-    if (input.trim() === "" && date.trim() === "" && time.trim() === "") {
+
+
+
+
+  function newTOdo() {
+
+    if (input.trim() === "" || date.trim() === "" || time.trim() === "") {
       setError(true);
       return;
     }
 
-        setTodo((todos) => [...todos,
-            { id: todos.length, text: input, completed: false , date , time }
-        ]);
-        setInput("")
-        setDate("")
-        setTime("")
-        setError(false)
+    setTodo((todos) => [...todos,
+    { id: Date.now(), text: input, completed: false, date, time }
+    ]);
+    setInput("")
+    setDate("")
+    setTime("")
+    setError(false)
 
-    }
-    function inputHandler(event) {
-       
-        setInput(event.target.value)
+  }
+  function inputHandler(event) {
 
-    
+    setInput(event.target.value)
 
-    }
-    function handleKeyDown(event) {
+
+
+  }
+  function handleKeyDown(event) {
     if (event.key === "Enter") {
       newTOdo();
-    } 
-}
+    }
+  }
 
   function toggleCompleted(id) {
     setTodo((todos) =>
@@ -51,73 +55,107 @@ function App() {
     );
   }
   function deleteTodo(id) {
-  setTodo((todos) => todos.filter((item) => item.id !== id));
-}
-  function dateHandler(event) {
-  setDate(event.target.value);
-}
-  function timeHandler(event) {
-  setTime(event.target.value);
+    setTodo((todos) => todos.filter((item) => item.id !== id));
   }
-  
+  // function getDeadlineStatus(date, time) {
+  //   const deadline = new Date(`${date}T${time}`);
+  //   const now = new Date();
 
-    return (
-        <div className="App">
-          <div className="input-container">
-            {/* <h1 className="h1">Add Todo</h1> */}
+  //   const diffiD = Math.floor((now - deadline) / (1000 * 60 * 60 * 24));
+  //   const diffiM = Math.floor(((now - deadline) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
-            <input
-    
-            className={error? "input error":"input"}
-            type="text" 
-            onChange={inputHandler} value={input} 
+  //   if (diffiD > 0) 
+  //     return `Deadline Expired ${diffiD} days and ${Math.abs(diffiM)} hour ago`;
+
+  //   if (diffiD < 0 && diffiM < 0) {
+  //     return `Due Today , ${Math.abs(diffiM)} hour left`;
+  //   }
+
+  function getDeadlineStatus(date, time) {
+    if (!date || !time) return "";
+
+    const deadline = new Date(`${date}T${time}`);
+    const now = new Date();
+    const diffMs = deadline - now;
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const diffHours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+    if (diffMs < 0) {
+      return `Deadline expired ${Math.abs(diffDays)} days and ${Math.abs(diffHours)} hours ago`;
+    } else if (diffDays === 0) {
+      return `Due today, ${diffHours} hours left`;
+    }
+    return `Due in ${diffDays} days and ${diffHours} hours`;
+  }
+
+
+
+
+  function dateHandler(event) {
+    setDate(event.target.value);
+  }
+  function timeHandler(event) {
+    setTime(event.target.value);
+  }
+
+
+  return (
+    <div className="App">
+      <header className="header">
+        {/* <h1 className="h1">Add Todo</h1> */}
+        <div className="heading">
+          <input
+            placeholder="What need to be done?"
+
+            className={error ? "input error" : "input"}
+            type="text"
+            onChange={inputHandler} value={input}
             onKeyDown={handleKeyDown} />
 
-            <input
-           className={error? "date error" : "date-input"}
-           type="date"
-           onChange={dateHandler}
-           value={date} />
-           
-            <input
-           className={error? "time error" : "time-input"}
+          <input
+            className={error ? "date" : "date-input"}
+            type="date"
+            onChange={dateHandler}
+            value={date} />
+
+          <input
+            className={error ? "time" : "time-input"}
             type="time"
             onChange={timeHandler}
             value={time} />
-            <button className="button" onClick={newTOdo}>Add task</button>
-             
-             </div>
-             
-            <ul>
-             
+          <button className="button" onClick={newTOdo}>Add task</button>
+        </div>
+      </header>
+
+      <ul>
+
         {todo.map(item => (
           <li key={item.id}>
             <div className="message">
               <input className="checkbox "
-              type="checkbox"
-              checked={item.completed}
-              onChange={() => toggleCompleted(item.id)}
-            />
-            <span className="item-text" >
-            {item.text} 
-            </span>
-            <span className="item-date">
-            {item.date}
-            </span>
-            <span className="item-time">
-            {item.time}
-            </span>
-            <button className="delete-button" onClick={() => deleteTodo(item.id)}>
-          Delete
-        </button>
+                type="checkbox"
+                checked={item.completed}
+                onChange={() => toggleCompleted(item.id)}
+              />
+              <span className={`item-text ${item.completed ? "completed" : ""}`}>
+                {item.text}
+              </span>
+
+              <div className="deadline-expired">
+                {getDeadlineStatus(item.date, item.time)}
+              </div>
+
+              <button className="delete-button" onClick={() => deleteTodo(item.id)}>
+                🗑️
+              </button>
             </div>
-            
+
           </li>
         ))}
       </ul>
-      
-        </div>
-    );
+
+    </div>
+  );
 }
 
-export default App ;
+export default App;
