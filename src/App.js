@@ -1,5 +1,6 @@
 import {useEffect, useState } from "react";
 import "./App.css";
+import deletebtn from './deletebtn.jpg'
 
 function App() {
   const [todo, setTodo] = useState(() => {
@@ -128,13 +129,15 @@ function App() {
             className={error ? "date" : "date-input"}
             type="date"
             onChange={dateHandler}
-            value={date} />
+            value={date}
+            onKeyDown={handleKeyDown} />
 
           <input
             className={error ? "time" : "time-input"}
             type="time"
             onChange={timeHandler}
-            value={time} />
+            value={time}
+            onKeyDown={handleKeyDown} />
           <button className="button" onClick={newTOdo}>Add task</button>
         </div>
       </header>
@@ -158,7 +161,13 @@ function App() {
               </div>
 
               <button className="delete-button" onClick={() => deleteTodo(item.id)}>
-                🗑️
+                <img
+                className="todo-right"
+                src={deletebtn}
+                alt="deleteicon"
+                width="20"
+                height="25"
+              />
               </button>
             </div>
 
@@ -172,10 +181,16 @@ function App() {
 
           Item Left</span>
         <div className="filters">
-          <button onClick={() => setFilter("all")}>All</button>
-          <button onClick={() => setFilter("active")}>Active</button>
-          <button onClick={() => setFilter("completed")}>Completed</button>
-        </div>
+  <button className={filter === "all" ? "active-filter" : ""} 
+    onClick={() => setFilter("all")}
+  > All</button>
+  <button className={filter === "active" ? "active-filter" : ""} 
+    onClick={() => setFilter("active")}
+  >Active</button>
+  <button className={filter === "completed" ? "active-filter" : ""} 
+    onClick={() => setFilter("completed")}
+  > Completed</button>
+</div>
         </div>
       </footer>
 
