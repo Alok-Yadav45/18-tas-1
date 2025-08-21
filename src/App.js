@@ -1,20 +1,27 @@
-import { useState } from "react";
+import {useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [todo, setTodo] = useState([
+  const [todo, setTodo] = useState(() => {
+    const savedTodos = localStorage.getItem("todos");
+    return savedTodos ? JSON.parse(savedTodos) :
+    [
 
     { id: 0, text: "abc", completed: false, date: "2025-08-19", time: "19:36" },
     { id: 1, text: "xyz", completed: false, date: "2025-08-19", time: "19:36" },
 
-  ]);
+  ];
+});
 
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [filter, setFilter] = useState("all");
-
+  
+   useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todo));
+  }, [todo]);
 
   function newTOdo() {
 
@@ -101,6 +108,8 @@ function App() {
     return true;
   });
 
+  
+
 
   return (
     <div className="App">
@@ -158,18 +167,15 @@ function App() {
 
       </ul>
       <footer className="footer">
-        <button className="btn-i">{todo.filter((t) => !t.completed).length}
+        <div className="footer-s">
+        <span className="spn-i">{todo.filter((t) => !t.completed).length} :
 
-          Item Left</button>
+          Item Left</span>
         <div className="filters">
-          <button onClick={() => setFilter("main-msg")}
-
-          >
-            All</button>
-          <button onClick={() => setFilter("active")}
-            onChange={filteredTodos}>Active</button>
-          <button onClick={() => setFilter("completed")}
-            onChange={filteredTodos}>Completed</button>
+          <button onClick={() => setFilter("all")}>All</button>
+          <button onClick={() => setFilter("active")}>Active</button>
+          <button onClick={() => setFilter("completed")}>Completed</button>
+        </div>
         </div>
       </footer>
 
