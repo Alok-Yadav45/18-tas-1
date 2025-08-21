@@ -13,9 +13,7 @@ function App() {
   const [error, setError] = useState(false);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-
-
-
+  const [filter, setFilter] = useState("all");
 
 
   function newTOdo() {
@@ -97,6 +95,11 @@ function App() {
   function timeHandler(event) {
     setTime(event.target.value);
   }
+  const filteredTodos = todo.filter((t) => {
+    if (filter === "active") return !t.completed;
+    if (filter === "completed") return t.completed;
+    return true;
+  });
 
 
   return (
@@ -127,9 +130,9 @@ function App() {
         </div>
       </header>
 
-      <ul>
+      <ul className="main-msg">
 
-        {todo.map(item => (
+        {filteredTodos.map(item => (
           <li key={item.id}>
             <div className="message">
               <input className="checkbox "
@@ -152,7 +155,23 @@ function App() {
 
           </li>
         ))}
+
       </ul>
+      <footer className="footer">
+        <button className="btn-i">{todo.filter((t) => !t.completed).length}
+
+          Item Left</button>
+        <div className="filters">
+          <button onClick={() => setFilter("main-msg")}
+
+          >
+            All</button>
+          <button onClick={() => setFilter("active")}
+            onChange={filteredTodos}>Active</button>
+          <button onClick={() => setFilter("completed")}
+            onChange={filteredTodos}>Completed</button>
+        </div>
+      </footer>
 
     </div>
   );
