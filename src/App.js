@@ -16,8 +16,11 @@ function App() {
 
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+  const now = new Date();
+  const [date, setDate] = useState(now.toISOString().split("T")[0]);
+  const [time, setTime] = useState(
+  String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()+2).padStart(2, "0")
+);
   const [filter, setFilter] = useState("all");
   
    useEffect(() => {
@@ -26,7 +29,7 @@ function App() {
 
   function newTOdo() {
 
-    if (input.trim() === "" || date.trim() === "" || time.trim() === "") {
+    if (input.trim() === "") {
       setError(true);
       return;
     }
@@ -35,8 +38,6 @@ function App() {
     { id: Date.now(), text: input, completed: false, date, time }
     ]);
     setInput("")
-    setDate("")
-    setTime("")
     setError(false)
 
   }
@@ -152,6 +153,7 @@ function App() {
                 checked={item.completed}
                 onChange={() => toggleCompleted(item.id)}
               />
+              
               <span className={`item-text ${item.completed ? "completed" : ""}`}>
                 {item.text}
               </span>
