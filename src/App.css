@@ -16,12 +16,10 @@
   /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: black;
-
-
 }
 
 .header {
-  background-color: #007bff;
+  background-color: #054482;
   padding: 15px 20px;
   color: white;
   display: flex;
@@ -34,20 +32,24 @@
   top: 0;
   z-index: 1000;
 }
+.heading {
+  display: grid;
+  grid-template-columns: 5fr 2fr 2fr 1fr;
+
+  justify-content: center;
+
+  width: 90vw;
+  max-width: 800px;
+}
 
 .input {
-  flex: 1;
+  
   padding: 10px;
   border-radius: 5px;
   border: none;
 }
 
-.h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  margin-top: 0px;
-  margin-right: 100px;
-}
+
 
 .input {
   padding: 10px;
@@ -55,7 +57,7 @@
   border-radius: 1px;
   margin-bottom: 10px;
 
-  width: 60%;
+ 
 }
 
 .date-input {
@@ -63,7 +65,7 @@
   border: 1px solid #ccc;
   border-radius: 1px;
 
-  width: 20%;
+ 
   margin-bottom: 10px;
 }
 
@@ -72,28 +74,28 @@
   border: 1px solid #ccc;
   border-radius: 1px;
 
-  width: 10%;
+ 
   margin-bottom: 10px;
 }
 
 .button {
-  padding: 14px 40px;
+ 
 
   border: none;
-  border-radius: 4px;
+  
   margin-bottom: 9px;
-  margin-left: 5PX;
+  margin-left: 1px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   transition: background-color 0.3s ease;
-  background-color: white;
-  color: #007bff;
+  color: white;
+  background-color: #007bff;
   border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  padding: 8px 12px;
   cursor: pointer;
   font-weight: bold;
+
 }
 .input.error {
   border-color: red;
@@ -101,25 +103,48 @@
 .button:hover {
   background-color: #0056b3;
 }
+
+
 .message {
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 2fr 1fr;
   align-items: center;
-  justify-content: space-between;
   padding: 10px 16px;
-  margin-top: 10px;
-  width: 100%;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  flex-wrap: wrap;
-  gap: 10px; 
+  gap: 10px;
+  margin-bottom: 10px;
+  width: 90vw;
+  max-width: 800px;
+  margin: 0 auto;
 }
-.message-content {
-  display: flex;
+
+
+.main-msg {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 22vh;
+  position: relative;
+  list-style: none;
+  gap: 12px;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+  width: 90vw;
+  max-width: 800px;
+ 
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
+
+.two-msg{
+  border: #0056b3;
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+
+}
+
 .delete-button {
   border: none;
 
@@ -128,15 +153,16 @@
 
   margin-left: auto;
 }
-.message .item {
-  margin-right: 50px;
-}
+
 .item-text {
-  display: inline-block;
-  margin-right: 100px;
+  display: flex;
+  box-sizing: border-box;
   font-size: 1.3rem;
   flex: 1;
   text-align: left;
+  word-break: break-all;
+  overflow-wrap: break-word;
+
 }
 .checkbox {
   align-items: start;
@@ -145,18 +171,26 @@
   width: 20px;
   height: 20px;
   margin-right: 20px;
+  
 }
 .deadline-expired {
-  display: inline-block;
-  margin-right: 40px;
-  margin-left: 20px;
+ display: flex;
+
   font-size: 0.8rem;
-  white-space: pre;
-  white-space: nowrap;
+  
+  box-sizing: border-box;
+  word-break: break-all;
+ overflow: auto;
+
+
+
+
+
+
 }
 .item-completed {
   display: inline-block;
-  margin-right: 20px;
+ 
   font-size: 0.8rem;
   color: green;
 }
@@ -168,34 +202,21 @@
 }
 
 
-
-.todo-item {
-  background-color: #f9f9f9;
-  margin: 8px auto;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
+.footer-s {
+  
+  display: grid;
+  grid-template-columns: 1fr 3fr;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 800px;
-}
-
-.heading {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
   justify-content: center;
   max-width: 800px;
-  width: 100%;
-}
-.main-msg{
+  width: 90vw;
  
-    margin-top: 150px;
-    position: sticky;
-    width: 800px;
-    list-style: none;
+}
+
+
+.dlt-btn{
+  display: flex;
+  align-items: flex-end;
 }
 .footer {
   position: fixed;
@@ -220,10 +241,14 @@
   color: #101011;
   font-weight: bold;
   cursor: pointer;
-  width: 200px;
+  
   padding: 5px 10px;
  
    transition: all 0.3s ease;
+}
+.filters{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 .spn-i{
   background: none;
@@ -235,11 +260,10 @@
   width: 200px;
 }
 .footer-s{
-  
-  width: 800px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 60%;
 }
 .filters button.active-filter {
   background-color: #007bff;  
@@ -247,119 +271,113 @@
   border-radius: 4px;
 }
 
-
-@media (max-width: 490px) {
-  .header {
-    flex-direction: column;
-    align-items: stretch;
-    height: auto;
+@media (max-width: 900px) {
+  .heading,
+  .main-msg,
+  .footer-s,
+  .message {
+    max-width: 600px;
+    width: 95vw;
   }
-
   .heading {
-    flex-direction: column;
-    width: 100%;
-    gap: 8px;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
   }
-
-  .input,
-  .date-input,
-  .time-input {
-    width: 100%;  
+  .message {
+    grid-template-columns: 2fr 1fr 1fr;
+    font-size: 1rem;
   }
-
-  .button {
-    width: 60%;            
-    margin: 0 auto;        
-    display: block;
-    font-size: 14px;
-    padding: 10px;
+}
+@media (max-width: 600px) {
+  .heading,
+  .main-msg,
+  .footer-s,
+  .message {
+    max-width: 98vw;
+    width: 98vw;
   }
-
-  .main-msg {
-    margin-top: 200px; 
-    width: 95%;
+  .heading {
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 1fr 1fr;
+    row-gap: 0px;
+    padding: 0 5px;
+  }
+  .input{
+    grid-column: 1/4;
+  }
+  .message {
+    grid-template-columns: 3fr 2fr 1fr;
+    row-gap: 8px;
+    padding: 8px 4px;
+    font-size: 0.95rem;
+    
   }
   .item-text{
-    font-size: 0.8rem;
+    font-size: 1.1rem;
   }
   .deadline-expired{
-    font-size: 0.5rem;
+    font-size: 0.8rem;
   }
-  .footer {
+  .footer-s {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
     flex-direction: column;
     gap: 8px;
+    padding: 8px 0;
+  }
+  .footer {
     font-size: 12px;
-  }
-
-  .filters {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .filters button {
-    width: auto;
-    padding: 5px 10px;
+    gap: 20px;
+    padding: 8px;
   }
 }
 
-
-@media (min-width: 491px) and (max-width: 900px) {
-  .header {
-    flex-direction: row;       
-    flex-wrap: nowrap;         
-    justify-content: center;
-    gap: 8px;
-    height: auto;           
-  }
-
+@media (max-width: 460px){
   .heading {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 100%;
-    max-width: 95%;            
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
   }
-
   .input {
-    flex: 2;                 
-    min-width: 180px;
+    grid-column: 1 / 4;
+    width: 100%;
   }
-
-  .date-input {
-    flex: 1;
-    min-width: 120px;
+  .date-input
+   {
+    grid-column: 1 / 3;
+    width: 100%;
   }
-
   .time-input {
-    flex: 1;
-    min-width: 100px;
+    grid-column: 3 / 4;
+    width: 100%;
   }
-
   .button {
-    flex: 0;
-    white-space: nowrap;    
-    min-width: 100px;
+    grid-column: 1 / 4;
+    width: 100%;
   }
-
-  .main-msg {
-    margin-top: 120px;        
-    width: 95%;
-    max-width: 800px;
+  .item-text{
+    font-size: 1rem;
   }
-
+  .deadline-expired{
+    font-size: 0.7rem;
+  }
+   .footer-s {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 0;
+  }
   .footer {
-    flex-direction: row;      
-    justify-content: space-around;
-    font-size: 14px;
+    font-size: 12px;
+    gap: 20px;
+    padding: 8px;
   }
-
-  .filters {
-    display: flex;
-    gap: 15px;
-  }
-
-  .filters button {
-    width: auto;
-    padding: 5px 15px;
-  }
+  .spn-i{
+  background: none;
+ 
+  color: #090909;
+  font-weight: bold;
+  
+  padding: 5px 10px;
+  width: 100px;
+ }
 }
